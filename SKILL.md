@@ -139,14 +139,78 @@ When building an autonomous credit-building agent:
 - Respect user's financial capacity — don't recommend accounts they can't maintain
 - Prioritize payment history above all else (35% of score)
 
+## Certified Mail Automation
+
+The skill includes a complete Lob API integration for sending dispute letters as USPS Certified Mail with Return Receipt — programmatically.
+
+**Script:** `scripts/certified_mail.py`
+
+**Setup:**
+```bash
+pip install requests
+export LOB_API_KEY="your_live_key"  # Get from dashboard.lob.com
+```
+
+**Python Usage:**
+```python
+from certified_mail import DisputeMailer
+
+mailer = DisputeMailer()
+
+# Send a basic bureau dispute to Equifax
+result = mailer.send_dispute(
+    client={"name": "John Doe", "address_line1": "123 Main St", "city": "Austin", "state": "TX", "zip": "78701", "ssn_last4": "1234", "dob": "01/15/1990"},
+    letter_type="basic_bureau",
+    target="equifax",
+    dispute_items=[{"account_name": "Chase", "account_number_last4": "5678", "reason": "Account shows 30-day late but was paid on time"}]
+)
+
+# Send same dispute to ALL 3 bureaus at once
+results = mailer.send_to_all_bureaus(client, "basic_bureau", dispute_items)
+
+# Check for overdue disputes (past 30-day deadline)
+overdue = mailer.get_overdue_disputes()
+```
+
+**CLI Usage:**
+```bash
+# List all 19 letter types
+python certified_mail.py types
+
+# Send to one bureau
+python certified_mail.py send --type basic_bureau --target equifax --name "John Doe" --address "123 Main St" --city Austin --state TX --zip 78701 --account Chase --reason "Wrong late payment"
+
+# Send to all 3 bureaus
+python certified_mail.py send-all --type basic_bureau --name "John Doe" --address "123 Main St" --city Austin --state TX --zip 78701
+
+# Check pending disputes
+python certified_mail.py pending
+
+# Check overdue (ready for escalation)
+python certified_mail.py overdue
+```
+
+**Cost:** ~$8-9 per letter (printing + certified mail + return receipt). No subscription.
+
+**Features:**
+- All 19 letter types with auto-populated HTML templates
+- USPS Certified Mail with Return Receipt (legal proof of delivery)
+- Address verification before sending
+- Automatic 30-day deadline tracking
+- Overdue detection for escalation triggers
+- Delivery status monitoring via Lob tracking
+- Batch send to all 3 bureaus in one call
+- Local JSON dispute log for audit trail
+
 ## Resource Map
 
 | Topic | Reference |
 |-------|-----------|
 | Full FCRA legal rights & sections | `references/fcra-rights.md` |
 | Credit building playbook with timelines | `references/credit-building-playbook.md` |
-| Dispute letter templates & strategies | `references/dispute-strategies.md` |
+| 19 dispute letter types with templates | `references/dispute-strategies.md` |
 | Credit score myths & facts | `references/myths-and-facts.md` |
 | Key contacts & resources | `references/resources.md` |
+| Certified mail dispatch script | `scripts/certified_mail.py` |
 
 Read references only when the task requires that specific depth.
