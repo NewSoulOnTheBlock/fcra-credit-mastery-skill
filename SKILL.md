@@ -1,6 +1,6 @@
 ---
 name: fcra-credit-mastery
-description: Comprehensive knowledge of the Fair Credit Reporting Act (FCRA), US credit system mechanics, credit score optimization, dispute strategies, and credit building tactics. Use when advising on credit building, analyzing credit reports, disputing errors, understanding consumer credit rights, planning credit improvement strategies, building authorized user strategies, or designing an autonomous credit-building agent. Covers FICO scoring, VantageScore, the three bureaus, furnisher obligations, and actionable credit repair workflows.
+description: Comprehensive knowledge of the Fair Credit Reporting Act (FCRA), Equal Credit Opportunity Act (ECOA), US credit system mechanics, credit score optimization, dispute strategies, and credit building tactics for both personal AND business credit. Use when advising on credit building, analyzing credit reports, disputing errors, understanding consumer credit rights, planning credit improvement strategies, building authorized user strategies, building business credit for entrepreneurs, setting up vendor trade lines, understanding business credit bureaus (D&B PAYDEX, Experian Business, Equifax Business), SBA loan eligibility, ECOA anti-discrimination protections, or designing an autonomous credit-building agent. Covers FICO scoring, VantageScore, Regulation B, the three consumer bureaus, three business bureaus, furnisher obligations, certified mail automation via Lob API, and actionable credit repair workflows.
 ---
 
 # FCRA & Credit Mastery
@@ -202,6 +202,22 @@ python certified_mail.py overdue
 - Batch send to all 3 bureaus in one call
 - Local JSON dispute log for audit trail
 
+## Business Credit (Entrepreneurs)
+
+The skill includes a complete business credit building module covering:
+
+- **Business credit bureaus:** D&B (PAYDEX), Experian Business (Intelliscore), Equifax Business
+- **Entity foundation:** LLC formation, EIN, DUNS number, business bank account, NAP consistency
+- **4-phase credit building:** Vendor credit → Store/fleet cards → Major business cards → No-PG lines of credit
+- **Tier 1 vendor list:** 8+ vendors that extend Net-30 to new businesses and report to bureaus
+- **No Personal Guarantee (No-PG) cards:** Brex, Ramp, Divvy — credit based on business financials only
+- **SBA loans:** 7(a), 504, Microloan, Express programs
+- **Equal Credit Opportunity Act (ECOA):** Full legal rights for business credit applicants, Regulation B coverage, anti-discrimination protections, adverse action rights, enforcement agencies
+- **Timeline:** Zero to $100K+ in business credit in 12 months
+- **Separation rules:** How to keep business and personal credit completely separate
+
+Read `references/business-credit/BUSINESS-CREDIT.md` for the full guide.
+
 ## Resource Map
 
 | Topic | Reference |
@@ -212,5 +228,6 @@ python certified_mail.py overdue
 | Credit score myths & facts | `references/myths-and-facts.md` |
 | Key contacts & resources | `references/resources.md` |
 | Certified mail dispatch script | `scripts/certified_mail.py` |
+| **Business credit full guide (ECOA)** | `references/business-credit/BUSINESS-CREDIT.md` |
 
 Read references only when the task requires that specific depth.
